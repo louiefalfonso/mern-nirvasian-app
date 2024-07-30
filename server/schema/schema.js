@@ -16,7 +16,6 @@ import {
 import  Project  from "../models/Project.js";
 import  Client from "../models/Client.js";
 
-
 //Types
 const ClientType = new GraphQLObjectType({
   name: "Client",
@@ -81,7 +80,7 @@ const RootQuery = new GraphQLObjectType({
 const ProjectStatusEnum = new GraphQLEnumType({
   name: "ProjectStatus",
   values: {
-    NEW: { value: "Not started" },
+    NEW: { value: "Not Started" },
     PROGRESS: { value: "In Progress" },
     COMPLETED: { value: "Completed" },
   },
@@ -89,7 +88,7 @@ const ProjectStatusEnum = new GraphQLEnumType({
 const ProjectStatusUpdateEnum = new GraphQLEnumType({
   name: "ProjectStatusUpdate",
   values: {
-    NEW: { value: "Not started" },
+    NEW: { value: "Not Started" },
     PROGRESS: { value: "In Progress" },
     COMPLETED: { value: "Completed" },
   },
@@ -97,7 +96,6 @@ const ProjectStatusUpdateEnum = new GraphQLEnumType({
 
 
 //Mutations
-
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
