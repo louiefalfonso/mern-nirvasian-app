@@ -1,6 +1,6 @@
 import React from "react";
 import Clients from "../components/Clients";
-//import Projects from "../components/Projects";
+import Projects from "../components/Projects";
 import AddClientModal from "../components/AddClientModal";
 import Header from "../components/Header";
 
@@ -13,6 +13,7 @@ const Dashboard = () => {
           <AddClientModal />
         </div>
         <Clients />
+        <Projects/>
       </div>
     </>
   );

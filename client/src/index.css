@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -27,12 +27,12 @@ code {
 
 .btn-primary,
 .bg-primary {
-  background-color: #df3ca6 !important;
+  background-color: #ff712a !important;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #df3ca6;
+  background-color: #ff712a;
   opacity: 0.9;
 }
 
@@ -48,3 +48,4 @@ code {
 .icon {
   margin-right: 5px;
 }
+

@@ -11,18 +11,17 @@ const AddClientModal = () => {
     const [phone, setPhone] = useState("");
 
     const [addClient] = useMutation(ADD_CLIENT, {
-        variables: { name, email, phone },
-        update(cache, { data: { addClient } }) {
-            const { clients } = cache.readQuery({ query: GET_CLIENTS });
-
-            cache.writeQuery({
-                query: GET_CLIENTS,
-                data: {
-                    clients: [...clients, addClient],
-                },
-            });
-        }
-    });
+       variables: { name, email, phone },
+       update(cache, { data: { addClient } }) {
+         const { clients } = cache.readQuery({ query: GET_CLIENTS });
+         cache.writeQuery({
+           query: GET_CLIENTS,
+           data: {
+             clients: [...clients, addClient],
+           },
+         });
+       },
+     });
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -40,7 +39,7 @@ const AddClientModal = () => {
     <>
       <button
         type="button"
-        className="btn btn-secondary"
+        className="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#addClientModal"
       >
@@ -72,7 +71,7 @@ const AddClientModal = () => {
             <div className="modal-body">
               <form onSubmit={onSubmit}>
                 <div className="mb-3">
-                  <label className="form-label">Name</label>
+                  <label className="form-label">Full Name:</label>
                   <input
                     type="text"
                     className="form-control"
@@ -82,7 +81,7 @@ const AddClientModal = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">Email</label>
+                  <label className="form-label">Email Address:</label>
                   <input
                     type="email"
                     className="form-control"
@@ -92,7 +91,7 @@ const AddClientModal = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">Phone</label>
+                  <label className="form-label">Phone Number</label>
                   <input
                     type="text"
                     className="form-control"

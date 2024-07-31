@@ -37,8 +37,12 @@ const ProjectType = new GraphQLObjectType({
     client: {
       type: ClientType,
       resolve: (parent, args) => {
-        return clients.findById(parent.clientId);
+        return Client.findById(parent.clientId);
       },
+      id: { type: GraphQLID },
+      name: { type: GraphQLString },
+      email: { type: GraphQLString },
+      phone: { type: GraphQLString },
     },
   }),
 });
@@ -85,14 +89,7 @@ const ProjectStatusEnum = new GraphQLEnumType({
     COMPLETED: { value: "Completed" },
   },
 });
-const ProjectStatusUpdateEnum = new GraphQLEnumType({
-  name: "ProjectStatusUpdate",
-  values: {
-    NEW: { value: "Not Started" },
-    PROGRESS: { value: "In Progress" },
-    COMPLETED: { value: "Completed" },
-  },
-});
+
 
 
 //Mutations
@@ -123,6 +120,28 @@ const mutation = new GraphQLObjectType({
       resolve: (parent, args) => {
         Project.deleteMany({ clientId: args.id });
         return Client.findByIdAndDelete(args.id);
+      },
+    },
+    updateClient: {
+      type: ClientType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+      },
+      resolve: (parent, args) => {
+        return Client.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              email: args.email,
+              phone: args.phone,
+            },
+          },
+          { new: true }
+        );
       },
     },
     addProject: {
@@ -162,7 +181,7 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         description: { type: GraphQLString },
         status: {
-          type: ProjectStatusUpdateEnum,
+          type: ProjectStatusEnum,
           defaultValue: "NEW",
         },
       },
@@ -178,7 +197,7 @@ const mutation = new GraphQLObjectType({
           },
           { new: true }
         );
-      }
+      },
     },
   },
 });

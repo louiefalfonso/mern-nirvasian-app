@@ -21,8 +21,9 @@ const Clients = () => {
             </tr>
           </thead>
           <tbody>
-            {data.clients.map((client) => (
-              <ClientRow key={client.id} client={client} />
+            
+            {data.clients.map((client, index) => (
+              <ClientRow key={index} client={client} />
             ))}
           </tbody>
         </table>
