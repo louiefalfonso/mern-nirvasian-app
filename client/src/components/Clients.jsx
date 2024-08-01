@@ -11,22 +11,22 @@ const Clients = () => {
   return (
     <>
       {!loading && !error && (
-        <table className="table table-hover mt-3">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            
-            {data.clients.map((client, index) => (
-              <ClientRow key={index} client={client} />
-            ))}
-          </tbody>
-        </table>
+        <div className="w-full md:w-3/3 bg-white px-2 md:px-4 pt-4 pb-4 shadow-md rounded">
+          <table className="w-full">
+            <thead className="border-b border-gray-300 ">
+              <tr className="text-black text-left">
+                <th className="py-2">Name</th>
+                <th className="py-2">Email Address</th>
+                <th className="py-2">Phone Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.clients.map((client, index) => (
+                <ClientRow key={index} client={client} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </>
   );

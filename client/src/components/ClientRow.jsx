@@ -24,14 +24,30 @@ const ClientRow = ({ client }) => {
   });
   return (
     <>
-      <tr>
-        <td>{client.name}</td>
-        <td>{client.email}</td>
-        <td>{client.phone}</td>
-        <td>
-          <button className="btn btn-danger btn-sm" onClick={deleteClient}>
-            <FaTrash />
-          </button>
+      <tr className="border-b border-gray-300 text-gray-600 hover:bg-gray-300/10">
+        <td className="py-2">
+          <div className="flex items-center gap-2">
+            <p className="text-base text-black">{client.name}</p>
+          </div>
+        </td>
+        <td className="py-2">
+          <div className="flex items-center gap-2">
+            <p className="text-base text-black">{client.email}</p>
+          </div>
+        </td>
+        <td className="py-2">
+          <div className="flex items-center gap-2">
+            <p className="text-base text-black">{client.phone}</p>
+          </div>
+        </td>
+        <td className="py-2">
+          <div className="flex items-center gap-2">
+            <p className="text-base text-black">
+              <button className="btn btn-danger btn-sm" onClick={deleteClient}>
+                <FaTrash />
+              </button>
+            </p>
+          </div>
         </td>
       </tr>
     </>

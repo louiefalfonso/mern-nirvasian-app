@@ -9,14 +9,12 @@ import Header from "../components/Header";
 const Dashboard = () => {
   return (
     <>
-      <Header />
-      <div className="container">
-        <div className="d-flex gap-3 mb-4">
-          <AddClientModal />
-          <AddProjectModal />
+      <div className="h-full py-4">
+        <div className="w-full flex flex-col md:flex-row gap-4 2xl:gap-10 py-8">
+          <Clients />
         </div>
-        <Clients />
-        <Projects />
+
+        {/*<Projects />*/}
       </div>
     </>
   );
