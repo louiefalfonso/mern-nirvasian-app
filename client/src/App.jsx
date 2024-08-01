@@ -1,5 +1,4 @@
-import Header from "./components/Header";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache,  } from "@apollo/client";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
@@ -12,12 +11,12 @@ const cache = new InMemoryCache({
       fields: {
         clients: {
           merge(existing, incoming) {
-            return [...(existing || []), ...incoming];
+            return incoming;
           },
         },
         projects: {
           merge(existing, incoming) {
-            return [...(existing || []), ...incoming];
+            return incoming;
           },
         },
       },
@@ -25,9 +24,11 @@ const cache = new InMemoryCache({
   },
 });
 
+
 const client = new ApolloClient({
   uri: import.meta.env.VITE_APOLLO_CLIENT,
   cache,
+  fetch,
 });
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/projects/:id" element={<Project />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </ApolloProvider>
     </>

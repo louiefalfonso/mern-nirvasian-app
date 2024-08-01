@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from "react";
 import { FaList } from "react-icons/fa";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery} from "@apollo/client";
 import { ADD_PROJECT } from "../mutations/projectMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import { GET_CLIENTS } from "../queries/clientQueries";
+import { Toaster, toast } from "react-hot-toast";
 
 const AddProjectModal = () => {
     const [name, setName] = useState("");
@@ -18,31 +19,29 @@ const AddProjectModal = () => {
         const { projects } = cache.readQuery({ query: GET_PROJECTS });
         cache.writeQuery({
           query: GET_PROJECTS,
-          data: { projects: [...projects, addProject] },
+          data: {
+            projects: [...projects, addProject],
+          },
         });
       },
     });
 
     const { loading, error, data } = useQuery(GET_CLIENTS);
 
-    const onSubmit = (e) => {
-      e.preventDefault();
+     const onSubmit = (e) => {
+       e.preventDefault();
 
-      if (name === "" || description === "" || status === "") {
-        return alert("Please fill in all fields");
-      }
-
-      addProject(name, description, clientId, status);
-
-      setName("");
-      setDescription("");
-      setStatus("new");
-      setClientId("");
-    };
-
-    if (loading) return null;
-    if (error) return "Something Went Wrong";
-
+       if (name === "" || description === "" || status === "") {
+         return alert("Please fill in all fields");
+       }
+       addProject(name, description, clientId, status);
+       setName("");
+       setDescription("");
+       setStatus('NEW');
+       setClientId("");
+       toast.success("Add New Project Complete!");
+       window.location.reload();
+     };
 
   return (
     <>
@@ -56,7 +55,7 @@ const AddProjectModal = () => {
           >
             <div className="d-flex align-items-center">
               <FaList className="icon" />
-              <div>New Project</div>
+              <div>Add New Project</div>
             </div>
           </button>
 
@@ -70,7 +69,7 @@ const AddProjectModal = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="addProjectModalLabel">
-                    New Project
+                    Add New Project
                   </h5>
                   <button
                     type="button"
@@ -108,9 +107,9 @@ const AddProjectModal = () => {
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                       >
-                        <option value="new">Not Started</option>
-                        <option value="progress">In Progress</option>
-                        <option value="completed">Completed</option>
+                        <option value="NEW">Not Started</option>
+                        <option value="PROGRESS">In Progress</option>
+                        <option value="COMPLETED">Completed</option>
                       </select>
                     </div>
 
@@ -145,6 +144,7 @@ const AddProjectModal = () => {
           </div>
         </>
       )}
+      <Toaster />
     </>
   );
 }

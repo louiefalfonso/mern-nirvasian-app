@@ -7,6 +7,7 @@ import {
   GraphQLNonNull,
   GraphQLEnumType,
 } from "graphql";
+import { toast } from "react-toastify";
 
 //fetch from sample data
 //import { sampleData } from '../sampleData.js';
@@ -196,7 +197,8 @@ const mutation = new GraphQLObjectType({
             },
           },
           { new: true }
-        );
+        )
+        ;
       },
     },
   },

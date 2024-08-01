@@ -6,7 +6,7 @@ import connectDB from "./config/db.js";
 import cors from "cors";
 
 dotenv.config();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const app = express();
 connectDB();
 
@@ -24,8 +24,4 @@ app.use(
   })
 );
 
-server.on("error", (err) => {
-  console.error("Error starting server:", err);
-  console.error(err.stack);
-  process.exit(1);
-});
+
