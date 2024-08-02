@@ -6,6 +6,8 @@ import Project from "./pages/Project";
 import Login from "./pages/Login";
 import Layout from "./components/common/Layout";
 import ClientPage from "./pages/ClientPage";
+import OrderPage from "./pages/OrderPage";
+import OrderCards from "./components/OrderCards";
 
 
 const cache = new InMemoryCache({
@@ -41,12 +43,14 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/clients" element={<ClientPage/>} />
-
+              <Route path="/clients" element={<ClientPage />} />
+              <Route path="/orders" element={<OrderPage />} />
+              
               <Route path="/projects/:id" element={<Project />} />
-              <Route path="*" element={<NotFound />} />
+
             </Route>
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </ApolloProvider>
       </main>

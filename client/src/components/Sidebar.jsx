@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdDashboard, MdLogout } from "react-icons/md";
+import { MdDashboard, MdLogout, MdAccessAlarms } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
@@ -16,13 +16,18 @@ import { useNavigate } from "react-router-dom";
 const linkData = [
   {
     label: "Dashboard",
-    link:  "dashboard",
+    link: "dashboard",
     icon: <MdDashboard />,
   },
   {
     label: "Clients",
     link: "clients",
     icon: <FaUsers />,
+  },
+  {
+    label: "Orders",
+    link: "orders",
+    icon: <MdAccessAlarms />,
   },
 ];
 

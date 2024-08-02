@@ -6,6 +6,16 @@ const GET_ORDERS = gql`
       id
       name
       status
+      description
+      client {
+        __typename
+        id
+        name
+        email
+        phone
+        role
+        status
+      }
     }
   }
 `;

@@ -34,7 +34,6 @@ const ClientTables = () => {
               <tr className="text-black text-left">
                 <th className="py-2">Full Name</th>
                 <th className="py-2">Email Address</th>
-                <th className="py-2">Phone Number</th>
                 <th className="py-2">Role</th>
                 <th className="py-2">Activity</th>
               </tr>
@@ -55,11 +54,7 @@ const ClientTables = () => {
                       <p className="text-base text-black">{client.email}</p>
                     </div>
                   </td>
-                  <td className="py-2">
-                    <div className="flex items-center gap-2">
-                      <p className="text-base text-black">{client.phone}</p>
-                    </div>
-                  </td>
+
                   <td className="py-2">
                     <div className="flex items-center gap-2">
                       <p className="text-base text-black">{client.role}</p>

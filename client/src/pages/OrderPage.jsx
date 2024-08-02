@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useState } from "react";
+import { IoMdAdd } from "react-icons/io";
+import Title from "../components/common/Title";
+import Button from "../components/common/Button";
+import AddNewOrder from "../components/AddNewOrder";
+import OrderTables from "../components/OrderTables";
 
 const OrderPage = () => {
+  const [open, setOpen] = useState(false);
   return (
-    <div>OrderPage</div>
-  )
-}
+    <>
+      <div className="flex items-center justify-between mb-4 w-full bg-white p-4 rounded shadow-sm">
+        <Title title="Order Lists" />
+        {
+          <Button
+            label="Add New Order"
+            onClick={() => setOpen(true)}
+            icon={<IoMdAdd className="text-lg" />}
+            className="flex flex-row-reverse gap-1 items-center bg-orange-500 text-white rounded-md 2xl:py-2.5"
+          />
+        }
+      </div>
+      <div className="flex items-center justify-between mb-8 w-full bg-white p-4 rounded shadow-sm">
+        <OrderTables />
+      </div>
+      <AddNewOrder open={open} setOpen={setOpen} />
+    </>
+  );
+};
 
-export default OrderPage
+export default OrderPage;
