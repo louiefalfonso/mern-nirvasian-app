@@ -1,44 +1,71 @@
+
 import React, { useState } from "react";
 import { DialogTitle } from "@headlessui/react";
-import ModalWrapper from '../components/modals/ModalWrapper'
+import ModalWrapper from "./modals/ModalWrapper";
 import { useMutation } from "@apollo/client";
-import { ADD_CLIENT } from "../mutations/clientMutations";
+import { UPDATE_CLIENT} from "../mutations/clientMutations";
 import { GET_CLIENTS } from "../queries/clientQueries";
 import { Toaster, toast } from "react-hot-toast";
 
-const AddNewClient = ({open, setOpen}) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [role, setRole] = useState("");
-  const [status, setStatus] = useState("temp");
+const UpdateClientForm = ({ client, open, setOpen }) => {
+  const [name, setName] = useState(client?.name);
+  const [email, setEmail] = useState(client?.email);
+  const [phone, setPhone] = useState(client?.phone);
+  const [role, setRole] = useState(client?.role);
+  const [status, setStatus] = useState(() => {
+    if (!client) return "temp";
+    switch (client?.status) {
+      case "Temporary":
+        return "TEMP";
+      case "Active":
+        return "ACTIVE";
+      case "In Active":
+        return "INACTIVE";
+      default:
+        throw new Error(`Unknown status: ${client?.status}`);
+    }
+  });
 
-  const [addClient] = useMutation(ADD_CLIENT, {
-    variables: { name, email, phone, role, status },
-    update(cache, { data: { addClient } }) {
+  const [updateClient] = useMutation(UPDATE_CLIENT, {
+    variables: client ? { id: client.id, name, email, phone, role, status } : {},
+    refetchQueries: [{ query: GET_CLIENTS }],
+    update(cache, { data: { updateClient } }) {
       const { clients } = cache.readQuery({ query: GET_CLIENTS });
       cache.writeQuery({
         query: GET_CLIENTS,
         data: {
-          clients: [...clients, addClient],
+          clients: clients.map((client) => {
+            if (client.id === updateClient.id) {
+              return updateClient;
+            }
+            return client;
+          }),
         },
       });
     },
   });
 
+  if (!client) return null;
+
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (name === "" || email === "" || phone === "") {
+    if (
+      name === "" ||
+      email === "" ||
+      phone === "" ||
+      role === "" ||
+      status === ""
+    ) {
       return alert("Please fill in all fields");
     }
-    addClient(name, email, phone);
+    updateClient(name, email, phone, role, status);
     setName("");
     setEmail("");
     setPhone("");
     setRole("");
     setStatus("temp");
-    toast.success("Add New Client Complete!");
+    toast.success("Update Client Complete!");
     window.location.reload();
   };
 
@@ -50,7 +77,7 @@ const AddNewClient = ({open, setOpen}) => {
             as="h2"
             className="text-base font-bold leading-6 text-gray-900 mb-4"
           >
-            Add New Client
+            Update Client Details
           </DialogTitle>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="col-span-full">
@@ -148,9 +175,8 @@ const AddNewClient = ({open, setOpen}) => {
           </div>
         </form>
       </ModalWrapper>
-      <Toaster />
     </>
   );
 };
 
-export default AddNewClient
+export default UpdateClientForm

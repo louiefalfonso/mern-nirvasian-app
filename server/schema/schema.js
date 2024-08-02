@@ -7,15 +7,11 @@ import {
   GraphQLNonNull,
   GraphQLEnumType,
 } from "graphql";
-import { toast } from "react-toastify";
-
-//fetch from sample data
-//import { sampleData } from '../sampleData.js';
-//const { clients, projects } = sampleData;
 
 //mongoose models
 import  Project  from "../models/Project.js";
 import  Client from "../models/Client.js";
+import Order from "../models/Order.js";
 
 //Types
 const ClientType = new GraphQLObjectType({
@@ -32,6 +28,28 @@ const ClientType = new GraphQLObjectType({
 
 const ProjectType = new GraphQLObjectType({
   name: "Project",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    status: { type: GraphQLString },
+    client: {
+      type: ClientType,
+      resolve: (parent, args) => {
+        return Client.findById(parent.clientId);
+      },
+      id: { type: GraphQLID },
+      name: { type: GraphQLString },
+      email: { type: GraphQLString },
+      phone: { type: GraphQLString },
+      role: { type: GraphQLString },
+      status: { type: GraphQLString },
+    },
+  }),
+});
+
+const OrderType = new GraphQLObjectType({
+  name: "Order",
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
@@ -82,6 +100,19 @@ const RootQuery = new GraphQLObjectType({
         return Project.find();
       },
     },
+    order: {
+      type: OrderType,
+      args: { id: { type: GraphQLID } },
+      resolve: (parent, args) => {
+        return Order.findById(args.id);
+      },
+    },
+    orders: {
+      type: new GraphQLList(OrderType),
+      resolve: (parent, args) => {
+        return Order.find();
+      },
+    },
   },
 });
 
@@ -104,7 +135,15 @@ const ClientActivityEnum = new GraphQLEnumType({
   },
 });
 
-
+const OrderStatusEnum = new GraphQLEnumType({
+  name: "OrderStatus",
+  values: {
+    PREPARED: { value: "Prepared" },
+    CONSIGN: { value: "Consigned" },
+    DISPATCH: { value: "Dispatched" },
+    SHIPPED: { value: "Shipped" },
+  },
+});
 
 //Mutations
 const mutation = new GraphQLObjectType({
@@ -225,6 +264,61 @@ const mutation = new GraphQLObjectType({
           },
           { new: true }
         );
+      },
+    },
+    addOrder: {
+      type: OrderType,
+      args: {
+        name: { type: GraphQLNonNull(GraphQLString) },
+        description: { type: GraphQLNonNull(GraphQLString) },
+        status: {
+          type: OrderStatusEnum,
+          defaultValue: "PREPARED",
+        },
+        clientId: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve: (parent, args) => {
+        const order = new Order({
+          name: args.name,
+          description: args.description,
+          status: args.status,
+          clientId: args.clientId,
+        });
+        return order.save();
+      },
+    },
+    updateOrder: {
+      type: OrderType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        status: {
+          type: OrderStatusEnum,
+          defaultValue: "PREPARED",
+        },
+      },
+      resolve(parent, args) {
+        return Order.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              description: args.description,
+              status: args.status,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+    deleteOrder: {
+      type: OrderType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Order.findByIdAndDelete(args.id);
       },
     },
   },

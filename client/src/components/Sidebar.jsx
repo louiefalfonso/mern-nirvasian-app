@@ -59,7 +59,7 @@ const Sidebar = () => {
         to={el.link}
         onClick={closeSidebar}
         className={clsx(
-          "w-full lg:w-3/4 flex gap-2 px-3 py-2 rounded-full items-center text-gray-800 text-base hover:bg-[#fdba74]",
+          "w-full lg:w-4/4 flex gap-2 px-3 py-2 rounded-full items-center text-gray-800 text-base hover:bg-[#fdba74]",
           path === el.link.split("/")[0] ? "bg-orange-500 text-neutral-100" : ""
         )}
       >
@@ -76,7 +76,7 @@ const Sidebar = () => {
         <div className="flex justify-center">
           <img src={logo} alt="logo" className="w-40" />
         </div>
-        <div className="flex-1 flex flex-col gap-y-5 py-8">
+        <div className="flex-1 flex flex-col gap-y-5">
           <div className="flex-1 flex flex-col gap-y-5 py-8">
             {sidebarLinks.map((link) => (
               <NavLink el={link} key={link.label} />

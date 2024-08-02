@@ -6,10 +6,7 @@ import { setOpenSidebar } from "../redux/slices/authSlice";
 const Navbar = () => {
    const { user } = useSelector((state) => state.auth);
    const dispatch = useDispatch();
-   
-
-   
-
+  
   return (
     <>
       <div className="flex justify-between items-center px-4 py-3 2xl:py-4 sticky z-10 top-0">
