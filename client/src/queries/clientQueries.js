@@ -7,6 +7,8 @@ const GET_CLIENTS = gql`
       name
       email
       phone
+      role
+      status
     }
   }
 `;

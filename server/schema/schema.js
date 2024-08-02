@@ -25,6 +25,8 @@ const ClientType = new GraphQLObjectType({
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     phone: { type: GraphQLString },
+    role: { type: GraphQLString },
+    status: { type: GraphQLString },
   }),
 });
 
@@ -44,6 +46,8 @@ const ProjectType = new GraphQLObjectType({
       name: { type: GraphQLString },
       email: { type: GraphQLString },
       phone: { type: GraphQLString },
+      role: { type: GraphQLString },
+      status: { type: GraphQLString },
     },
   }),
 });
@@ -91,6 +95,15 @@ const ProjectStatusEnum = new GraphQLEnumType({
   },
 });
 
+const ClientActivityEnum = new GraphQLEnumType({
+  name: "ClientActivity",
+  values: {
+    TEMP: { value: "Temporary" },
+    ACTIVE: { value: "Active" },
+    INACTIVE: { value: "In Active" },
+  },
+});
+
 
 
 //Mutations
@@ -103,12 +116,19 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLNonNull(GraphQLString) },
         email: { type: GraphQLNonNull(GraphQLString) },
         phone: { type: GraphQLNonNull(GraphQLString) },
+        role: { type: GraphQLNonNull(GraphQLString) },
+        status: {
+          type: ClientActivityEnum,
+          defaultValue: "TEMP",
+        },
       },
       resolve: (parent, args) => {
         const client = new Client({
           name: args.name,
           email: args.email,
           phone: args.phone,
+          role: args.role,
+          status: args.status,
         });
         return client.save();
       },
@@ -130,6 +150,11 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         email: { type: GraphQLString },
         phone: { type: GraphQLString },
+        role: { type: GraphQLString },
+        status: {
+          type: ClientActivityEnum,
+          defaultValue: "TEMP",
+        },
       },
       resolve: (parent, args) => {
         return Client.findByIdAndUpdate(
@@ -139,6 +164,8 @@ const mutation = new GraphQLObjectType({
               name: args.name,
               email: args.email,
               phone: args.phone,
+              role: args.role,
+              status: args.status,
             },
           },
           { new: true }
@@ -197,8 +224,7 @@ const mutation = new GraphQLObjectType({
             },
           },
           { new: true }
-        )
-        ;
+        );
       },
     },
   },

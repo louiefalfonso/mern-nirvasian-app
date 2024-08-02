@@ -3,15 +3,18 @@ import { FaUser } from 'react-icons/fa'
 import { useMutation } from '@apollo/client'
 import { ADD_CLIENT } from '../mutations/clientMutations'
 import { GET_CLIENTS } from '../queries/clientQueries'
+import { Toaster, toast } from "react-hot-toast";
 
 
 const AddClientModal = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [role, setRole] = useState("");
+    const [status, setStatus] = useState("temp");
 
     const [addClient] = useMutation(ADD_CLIENT, {
-       variables: { name, email, phone },
+       variables: { name, email, phone, role, status },
        update(cache, { data: { addClient } }) {
          const { clients } = cache.readQuery({ query: GET_CLIENTS });
          cache.writeQuery({
@@ -33,6 +36,10 @@ const AddClientModal = () => {
         setName("");
         setEmail("");
         setPhone("");
+        setRole("");
+        setStatus("temp");
+        toast.success("Add New Client Complete!");
+        window.location.reload();
     }
 
   return (
@@ -100,6 +107,30 @@ const AddClientModal = () => {
                     onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
+                <div className="mb-3">
+                  <label className="form-label">Role</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="role"
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label">Status</label>
+                  <select
+                    id="status"
+                    className="form-select"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="TEMP">Temporary</option>
+                    <option value="ACTIVE">Active</option>
+                    <option value="INACTIVE">In Active</option>
+                  </select>
+                </div>
 
                 <button
                   type="submit"
@@ -113,6 +144,7 @@ const AddClientModal = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </>
   );
 }

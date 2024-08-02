@@ -23,6 +23,8 @@ const ADD_PROJECT = gql`
         name
         email
         phone
+        role
+        status
       }
     }
   }
@@ -59,6 +61,8 @@ const UPDATE_PROJECT = gql`
         name
         email
         phone
+        role
+        status
       }
     }
   }

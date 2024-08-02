@@ -1,18 +1,18 @@
 import React from "react";
 import Clients from "../components/Clients";
-import Projects from "../components/Projects";
-import AddClientModal from "../components/AddClientModal";
-import AddProjectModal from "../components/AddProjectModal";
-import Header from "../components/Header";
-
 
 const Dashboard = () => {
   return (
     <>
       <div className="h-full py-4">
-        <div className="w-full flex flex-col md:flex-row gap-4 2xl:gap-10 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5">Dashboard</div>
+        <div className="w-full bg-white my-4 p-4 rounded shadow-sm">
           <Clients />
         </div>
+        <div className="w-full bg-white my-4 p-4 rounded shadow-sm">
+          Projects
+        </div>
+        
 
         {/*<Projects />*/}
       </div>

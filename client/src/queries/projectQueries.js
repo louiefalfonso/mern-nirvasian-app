@@ -23,6 +23,8 @@ const GET_PROJECT = gql`
         name
         email
         phone
+        role
+        status
       }
     }
   }
