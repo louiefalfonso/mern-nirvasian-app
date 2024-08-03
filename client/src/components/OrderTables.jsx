@@ -6,6 +6,7 @@ import Spinner from "./Spinner";
 import { MdCheckCircleOutline, MdPersonSearch } from "react-icons/md";
 import Title from "./common/Title";
 
+
 const OrderTables = () => {
      const [currentPage, setCurrentPage] = useState(1);
      const itemsPerPage = 5;
@@ -57,10 +58,8 @@ const OrderTables = () => {
                       <p className="text-base text-black">{order.name}</p>
                     </div>
                   </td>
-
                   <td className="py-2">
                     <div className="flex items-center gap-2">
-                      <MdPersonSearch className="text-amber-600" />
                       <p className="text-base text-black">
                         {order.client?.name}
                       </p>
@@ -75,6 +74,24 @@ const OrderTables = () => {
               ))}
             </tbody>
           </table>
+          <nav className="flex justify-center mt-5">
+            <ul className="flex">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <li key={index} className="mx-1">
+                  <button
+                    className={`px-3 py-1 rounded ${
+                      currentPage === index + 1
+                        ? "bg-orange-500 text-white"
+                        : "bg-gray-300"
+                    }`}
+                    onClick={() => handlePageChange(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </>
       )}
     </>

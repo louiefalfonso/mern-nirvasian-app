@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { GET_CLIENTS } from "../queries/clientQueries";
-import Spinner from "./Spinner";
+import { GET_CLIENTS } from "../../queries/clientQueries";
+import Spinner from "../Spinner";
 import ClientRow from "./ClientRow";
 import { Toaster } from "react-hot-toast";
 

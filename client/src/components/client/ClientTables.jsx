@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useQuery } from "@apollo/client";
-import { GET_CLIENTS } from "../queries/clientQueries";
-import Spinner from "./Spinner";
-import Title from './common/Title';
+import { GET_CLIENTS } from "../../queries/clientQueries";
+import Spinner from "../Spinner";
+import Title from '../common/Title';
 
 const ClientTables = () => {
   const [currentPage, setCurrentPage] = useState(1);

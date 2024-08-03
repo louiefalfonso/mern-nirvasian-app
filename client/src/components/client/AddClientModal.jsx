@@ -5,7 +5,6 @@ import { ADD_CLIENT } from '../mutations/clientMutations'
 import { GET_CLIENTS } from '../queries/clientQueries'
 import { Toaster, toast } from "react-hot-toast";
 
-
 const AddClientModal = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");

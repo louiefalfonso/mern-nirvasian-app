@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import Title from '../components/common/Title';
 import Button from '../components/common/Button';
-import Clients from '../components/Clients';
-import AddNewClient from '../components/AddNewClient';
+import Clients from '../components/client/Clients';
+import AddNewClient from '../components/client/AddNewClient';
 
 const ClientPage = () => {
   const [open, setOpen] = useState(false);

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { FaTrashAlt, FaEdit } from "react-icons/fa";
+import { TbListDetails } from "react-icons/tb";
+import { HiOutlineTrash } from "react-icons/hi2";
 import { useMutation } from "@apollo/client";
-import { GET_CLIENTS } from "../queries/clientQueries";
-import { DELETE_CLIENT } from "../mutations/clientMutations";
-import { GET_PROJECTS } from "../queries/projectQueries";
+import { GET_CLIENTS } from "../../queries/clientQueries";
+import { DELETE_CLIENT } from "../../mutations/clientMutations";
+import { GET_PROJECTS } from "../../queries/projectQueries";
 import { toast } from "react-hot-toast";
 import UpdateClientForm from "./UpdateClientForm";
-import Button from "./common/Button";
+import Button from "../common/Button";
 
 const ClientRow = ({ client }) => {
   const [open, setOpen] = useState(false);
@@ -59,7 +60,7 @@ const ClientRow = ({ client }) => {
             <p className="text-base text-black">
               <Button
                 onClick={() => setOpen(true)}
-                icon={<FaEdit />}
+                icon={<TbListDetails />}
                 className="text-slate-950 hover:text-slate-950"
               />
             </p>
@@ -68,7 +69,7 @@ const ClientRow = ({ client }) => {
                 className="text-red-700 hover:text-red-500"
                 onClick={deleteClient}
               >
-                <FaTrashAlt />
+                <HiOutlineTrash />
               </button>
             </p>
           </div>
