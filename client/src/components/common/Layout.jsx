@@ -1,10 +1,10 @@
 
 import React from 'react'
 import { useSelector } from "react-redux";
-import { MdOutlineSearch } from "react-icons/md";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Sidebar from '../Sidebar';
 import Navbar from '../Navbar';
+import MobileSidebar from '../MobileSidebar';
 
 
 const Layout = () => {
@@ -16,6 +16,7 @@ const Layout = () => {
       <div className="w-1/5 h-screen bg-white sticky top-0 hidden md:block">
         <Sidebar/>
       </div>
+      <MobileSidebar/>
       <div className="flex-1 overflow-y-auto">
         <Navbar/>
         <div className="p-4 2xl:px-10">

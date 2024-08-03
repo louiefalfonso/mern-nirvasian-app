@@ -10,7 +10,7 @@ const ClientPage = () => {
   return (
     <>
       <div className="flex items-center justify-between mb-4 w-full bg-white p-4 rounded shadow-sm">
-        <Title title="Client Lists"/>
+        <Title title="Client Lists" />
         {
           <Button
             label="Add New Client"
@@ -21,7 +21,11 @@ const ClientPage = () => {
         }
       </div>
       <div className="flex items-center justify-between mb-8 w-full bg-white p-4 rounded shadow-sm">
-        <Clients />
+        <div className="w-full md:px-1 px-0 mb-6">
+          <div className="overflow-x-auto">
+            <Clients />
+          </div>
+        </div>
       </div>
       <AddNewClient open={open} setOpen={setOpen} />
     </>

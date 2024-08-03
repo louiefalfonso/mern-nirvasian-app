@@ -7,8 +7,6 @@ import Login from "./pages/Login";
 import Layout from "./components/common/Layout";
 import ClientPage from "./pages/ClientPage";
 import OrderPage from "./pages/OrderPage";
-import OrderCards from "./components/OrderCards";
-
 
 const cache = new InMemoryCache({
   typePolicies: {

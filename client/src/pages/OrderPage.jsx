@@ -21,7 +21,11 @@ const OrderPage = () => {
         }
       </div>
       <div className="flex items-center justify-between mb-8 w-full bg-white p-4 rounded shadow-sm">
-       <Orders/>
+        <div className="w-full md:px-1 px-0 mb-6">
+          <div className="overflow-x-auto">
+            <Orders/>
+          </div>
+        </div>
       </div>
       <AddNewOrder open={open} setOpen={setOpen} />
     </>

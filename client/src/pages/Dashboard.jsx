@@ -14,10 +14,14 @@ const Dashboard = () => {
           <OrderChart />
         </div>
         <div className="w-full bg-white my-4 p-4 rounded shadow-sm">
-          <OrderTables />
+          <div className="overflow-x-auto">
+            <OrderTables />
+          </div>
         </div>
         <div className="w-full bg-white my-4 p-4 rounded shadow-sm">
-          <ClientTables />
+          <div className="overflow-x-auto">
+            <ClientTables />
+          </div>
         </div>
       </div>
     </>

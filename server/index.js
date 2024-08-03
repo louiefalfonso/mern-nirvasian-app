@@ -4,7 +4,6 @@ import schema from "./schema/schema.js";
 import { graphqlHTTP } from "express-graphql";
 import cors from "cors";
 import morgan from "morgan";
-import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import { errorHandler, routeNotFound } from "./middlewares/errorMiddlewares.js";

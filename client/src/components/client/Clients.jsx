@@ -14,22 +14,26 @@ const Clients = () => {
   return (
     <>
       {!loading && !error && (
-        <table className="w-full mb-5">
-          <thead className="border-b border-gray-300 ">
-            <tr className="text-black text-left">
-              <th className="py-2">Full Name</th>
-              <th className="py-2">Email Address</th>
-              <th className="py-2">Phone Number</th>
-              <th className="py-2">Role</th>
-              <th className="py-2">Activity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.clients.map((client, index) => (
-              <ClientRow key={index} client={client} />
-            ))}
-          </tbody>
-        </table>
+        <>
+          <div className="flex items-center justify-between mb-8">
+            <table className="w-full mb-5">
+              <thead className="border-b border-gray-300 ">
+                <tr className="text-black text-left">
+                  <th className="py-2">Full Name</th>
+                  <th className="py-2">Email Address</th>
+                  <th className="py-2">Phone Number</th>
+                  <th className="py-2">Role</th>
+                  <th className="py-2">Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.clients.map((client, index) => (
+                  <ClientRow key={index} client={client} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
       <Toaster />
     </>
