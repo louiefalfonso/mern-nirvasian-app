@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_ORDERS } from "../queries/orderQueries";
-import { GET_CLIENTS } from "../queries/clientQueries";
-import Spinner from "./Spinner";
+import { GET_ORDERS } from "../../queries/orderQueries";
+import { GET_CLIENTS } from "../../queries/clientQueries";
+import Spinner from "../Spinner";
 
 const OrderCards = () => {
   return (

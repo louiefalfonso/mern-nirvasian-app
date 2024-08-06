@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { DialogTitle } from "@headlessui/react";
-import ModalWrapper from "../components/modals/ModalWrapper";
-import { Toaster, toast } from "react-hot-toast";
+import ModalWrapper from "../modals/ModalWrapper";
+import { toast } from "react-hot-toast";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_ORDER } from "../mutations/orderMutations";
-import { GET_ORDERS } from "../queries/orderQueries";
-import { GET_CLIENTS } from "../queries/clientQueries";
+import { ADD_ORDER } from "../../mutations/orderMutations";
+import { GET_ORDERS } from "../../queries/orderQueries";
+import { GET_CLIENTS } from "../../queries/clientQueries";
 
 const AddNewOrder = ({ open, setOpen }) => {
   const [name, setName] = useState("");

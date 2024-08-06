@@ -2,10 +2,13 @@ import React from 'react'
 import { TbListDetails } from "react-icons/tb";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { toast } from "react-hot-toast";
-import { useMutation } from "@apollo/client";
-import { DELETE_ORDER } from '../mutations/orderMutations'
-import { GET_ORDERS } from '../queries/orderQueries'
+import { useMutation, useQuery} from "@apollo/client";
+import { DELETE_ORDER } from '../../mutations/orderMutations'
+import { GET_ORDERS,GET_ORDER } from '../../queries/orderQueries'
 import { MdCheckCircleOutline, MdPersonSearch } from "react-icons/md";
+
+
+import { useNavigate } from "react-router-dom";
 
 const OrderRow = ({order}) => {
     const [deleteOrder] = useMutation(DELETE_ORDER, {
@@ -23,13 +26,23 @@ const OrderRow = ({order}) => {
         },
     });
 
+    const { data, error, loading } = useQuery(GET_ORDER, {
+      variables: { id: order.id },
+      skip: true, 
+    });
+    
+    const navigate = useNavigate();
+    const viewOrder = () => {
+      navigate(`/orders/${order.id}`);
+    };
+
   return (
     <React.Fragment>
       <tr className="border-b border-gray-300 text-gray-600 hover:bg-gray-300/10">
         <td className="py-2">
           <div className="flex items-center gap-2">
             <MdCheckCircleOutline className="text-amber-600" />
-            <p className="text-base text-black"> {order.id}</p>
+            <p className="text-base text-black">{order.id}</p>
           </div>
         </td>
         <td className="py-2">
@@ -53,7 +66,7 @@ const OrderRow = ({order}) => {
             <p className="text-base text-black">
               <button
                 className="text-slate-950 hover:text-slate-950"
-                //onClick={viewOrder}
+                onClick={viewOrder}
               >
                 <TbListDetails />
               </button>

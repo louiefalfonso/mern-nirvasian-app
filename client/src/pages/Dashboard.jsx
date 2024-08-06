@@ -1,8 +1,8 @@
 import React from "react";
 import ClientTables from "../components/client/ClientTables";
-import OrderTables from "../components/OrderTables";
+import OrderTables from "../components/orders/OrderTables";
 import Title from "../components/common/Title";
-import OrderChart from "../components/OrderChart";
+import OrderChart from "../components/orders/OrderChart";
 
 const Dashboard = () => {
  

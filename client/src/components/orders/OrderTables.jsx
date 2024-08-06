@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_ORDERS } from "../queries/orderQueries";
-import { GET_CLIENTS } from "../queries/clientQueries";
-import Spinner from "./Spinner";
+import { GET_ORDERS } from "../../queries/orderQueries";
+import { GET_CLIENTS } from "../../queries/clientQueries";
+import Spinner from "../Spinner";
 import { MdCheckCircleOutline, MdPersonSearch } from "react-icons/md";
-import Title from "./common/Title";
+import Title from "../common/Title";
 
 
 const OrderTables = () => {

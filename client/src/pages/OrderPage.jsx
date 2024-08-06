@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import Title from "../components/common/Title";
 import Button from "../components/common/Button";
-import AddNewOrder from "../components/AddNewOrder";
-import Orders from "../components/Orders";
+import AddNewOrder from "../components/orders/AddNewOrder";
+import Orders from "../components/orders/Orders";
 
 const OrderPage = () => {
   const [open, setOpen] = useState(false);

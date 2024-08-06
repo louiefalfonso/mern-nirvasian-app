@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
-import { GET_ORDERS } from "../queries/orderQueries";
-import Spinner from "./Spinner";
-import OrderRow from "./OrderRow";
+import { GET_ORDERS } from "../../queries/orderQueries";
+import Spinner from "../Spinner";
+import OrderRow from "../orders/OrderRow";
 import { Toaster } from "react-hot-toast";
 
 const Orders = () => {

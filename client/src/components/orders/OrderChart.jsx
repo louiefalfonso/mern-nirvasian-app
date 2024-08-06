@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from "@apollo/client";
-import { GET_ORDERS } from "../queries/orderQueries";
-import Spinner from "./Spinner";
+import { GET_ORDERS } from "../../queries/orderQueries";
+import Spinner from "../Spinner";
 import {
   CartesianGrid,
   ResponsiveContainer,
