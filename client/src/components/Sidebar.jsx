@@ -42,11 +42,17 @@ const Sidebar = () => {
     try {
       await logoutUser().unwrap();
       localStorage.removeItem("userInfo");
-      document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      
+      // Clear cookies
+      document.cookie.split(";").forEach((cookie) => {
+        const cookieName = cookie.trim().split("=")[0];
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      });
+
       dispatch(logout());
       navigate("/login");
       toast.success("Logged out successfully");
+      
     } catch (err) {
       console.error("Error during logout:", err);
       toast.error(err?.data?.message || err.error);
@@ -86,16 +92,14 @@ const Sidebar = () => {
             {sidebarLinks.map((link) => (
               <NavLink el={link} key={link.label} />
             ))}
+            <button
+              className="w-full flex gap-2 p-2 items-center text-lg text-gray-800"
+              onClick={logoutHandler}
+            >
+              <MdLogout />
+              <span>Logout</span>
+            </button>
           </div>
-        </div>
-        <div className="">
-          <button
-            className="w-full flex gap-2 p-2 items-center text-lg text-gray-800"
-            onClick={logoutHandler}
-          >
-            <MdLogout />
-            <span>Logout</span>
-          </button>
         </div>
       </div>
       <Toaster />

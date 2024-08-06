@@ -12,6 +12,7 @@ import {
 import  Project  from "../models/Project.js";
 import  Client from "../models/Client.js";
 import Order from "../models/Order.js";
+import Product from "../models/Product.js";
 
 //Types
 const ClientType = new GraphQLObjectType({
@@ -70,10 +71,37 @@ const OrderType = new GraphQLObjectType({
   }),
 });
 
+const ProductType = new GraphQLObjectType({
+  name: "Product",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    sku: { type: GraphQLString },
+    description: { type: GraphQLString },
+    amount: { type: GraphQLString },
+    quantity: { type: GraphQLString },
+    type: { type: GraphQLString },
+    status: { type: GraphQLString },
+  }),
+});
+
 //Queries
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
+    product: {
+      type: ProductType,
+      args: { id: { type: GraphQLID } },
+      resolve: (parent, args) => {
+        return Product.findById(args.id);
+      },
+    },
+    products: {
+      type: new GraphQLList(ProductType),
+      resolve: (parent, args) => {
+        return Product.find();
+      },
+    },
     client: {
       type: ClientType,
       args: { id: { type: GraphQLID } },
@@ -142,6 +170,26 @@ const OrderStatusEnum = new GraphQLEnumType({
     CONSIGN: { value: "Consigned" },
     DISPATCH: { value: "Dispatched" },
     SHIPPED: { value: "Shipped" },
+  },
+});
+
+const ProductStatusEnum = new GraphQLEnumType({
+  name: "ProductStatus",
+  values: {
+    INSTOCK: { value: "In Stock" },
+    NOSTOCK: { value: "Out Of Stock" },
+  },
+});
+
+const ProductTypeEnum = new GraphQLEnumType({
+  name: "ProductType",
+  values: {
+    RAW: { value: "Raw Materials" },
+    FINISHED: { value: "Finished Goods" },
+    PERISHABLE: { value: "Perishable Goods" },
+    HAZARDOUS: { value: "Hazardous Materials" },
+    HIGHVALUE: { value: "High-Value Goods" },
+    OTHERS: { value: "Others" },
   },
 });
 
