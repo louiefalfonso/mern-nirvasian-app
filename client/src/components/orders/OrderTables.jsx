@@ -4,8 +4,6 @@ import { GET_ORDERS } from "../../queries/orderQueries";
 import { GET_CLIENTS } from "../../queries/clientQueries";
 import Spinner from "../Spinner";
 import { MdCheckCircleOutline, MdPersonSearch } from "react-icons/md";
-import Title from "../common/Title";
-
 
 const OrderTables = () => {
      const [currentPage, setCurrentPage] = useState(1);

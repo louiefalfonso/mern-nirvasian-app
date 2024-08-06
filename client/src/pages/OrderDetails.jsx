@@ -25,7 +25,6 @@ const OrderDetails = () => {
           <Button
             label="Back"
             onClick={() => window.history.back()}
-            //icon={<IoMdAdd className="text-lg" />}
             className="flex flex-row-reverse gap-1 items-center bg-orange-500 text-white rounded-md 2xl:py-2.5"
           />
         }

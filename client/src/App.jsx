@@ -2,12 +2,13 @@ import { ApolloProvider, ApolloClient, InMemoryCache,  } from "@apollo/client";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
-import Project from "./pages/Project";
 import Login from "./pages/Login";
 import Layout from "./components/common/Layout";
 import ClientPage from "./pages/ClientPage";
 import OrderPage from "./pages/OrderPage";
 import OrderDetails from "./pages/OrderDetails";
+import ProductPage from "./pages/ProductPage";
+import ProductDetails from "./pages/ProductDetails";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -45,10 +46,9 @@ function App() {
               <Route path="/clients" element={<ClientPage />} />
               <Route path="/orders" element={<OrderPage />} />
               <Route path="/orders/:id" element={<OrderDetails />} />
-
-              <Route path="/projects/:id" element={<Project />} />
+              <Route path="/products" element={<ProductPage/>} />
+              <Route path="/products/:id" element={<ProductDetails/>} />
             </Route>
-
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Login />} />
             <Route path="*" element={<NotFound />} />

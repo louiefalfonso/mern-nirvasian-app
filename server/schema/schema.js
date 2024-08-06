@@ -369,6 +369,81 @@ const mutation = new GraphQLObjectType({
         return Order.findByIdAndDelete(args.id);
       },
     },
+    addProduct: {
+      type: ProductType,
+      args: {
+        name: { type: GraphQLNonNull(GraphQLString) },
+        sku: { type: GraphQLNonNull(GraphQLString) },
+        description: { type: GraphQLNonNull(GraphQLString) },
+        amount: { type: GraphQLNonNull(GraphQLString) },
+        quantity: { type: GraphQLNonNull(GraphQLString) },
+        type: {
+          type: ProductTypeEnum,
+          defaultValue: "RAW",
+        },
+        status: {
+          type: ProductStatusEnum,
+          defaultValue: "INSTOCK",
+        },
+      },
+      resolve: (parent, args) => {
+        const product = new Product({
+          name: args.name,
+          sku: args.sku,
+          description: args.description,
+          quantity: args.quantity,
+          amount: args.amount,
+          status: args.status,
+          type: args.type,
+        });
+        return product.save();
+      },
+    },
+    updateProduct: {
+      type: ProductType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        sku: { type: GraphQLString },
+        description: { type: GraphQLString },
+        amount: { type: GraphQLString },
+        quantity: { type: GraphQLString },
+        type: {
+          type: ProductTypeEnum,
+          defaultValue: "RAW",
+        },
+        status: {
+          type: ProductStatusEnum,
+          defaultValue: "INSTOCK",
+        },
+      },
+      resolve(parent, args) {
+        return Product.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              sku: args.sku,
+              description: args.description,
+              amount: args.amount,
+              quantity: args.quantity,
+              type: args.type,
+              status: args.status,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+    deleteProduct: {
+      type: ProductType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Product.findByIdAndDelete(args.id);
+      },
+    },
   },
 });
 

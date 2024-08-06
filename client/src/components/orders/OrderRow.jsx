@@ -6,8 +6,6 @@ import { useMutation, useQuery} from "@apollo/client";
 import { DELETE_ORDER } from '../../mutations/orderMutations'
 import { GET_ORDERS,GET_ORDER } from '../../queries/orderQueries'
 import { MdCheckCircleOutline, MdPersonSearch } from "react-icons/md";
-
-
 import { useNavigate } from "react-router-dom";
 
 const OrderRow = ({order}) => {

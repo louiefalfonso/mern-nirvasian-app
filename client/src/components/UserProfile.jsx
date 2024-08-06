@@ -69,7 +69,6 @@ const UserProfile = ({ open, setOpen, userData }) => {
                 required: "Full name is required!",
               })}
               error={errors.name ? errors.name.message : ""}
-              //setValue={setValue}
             />
             <Textbox
               placeholder="Title"
@@ -81,7 +80,6 @@ const UserProfile = ({ open, setOpen, userData }) => {
                 required: "Title is required!",
               })}
               error={errors.title ? errors.title.message : ""}
-              //setValue={setValue}
             />
             <Textbox
               placeholder="Email Address"
@@ -93,9 +91,7 @@ const UserProfile = ({ open, setOpen, userData }) => {
                 required: "Email Address is required!",
               })}
               error={errors.email ? errors.email.message : ""}
-              //setValue={setValue}
             />
-
             <Textbox
               placeholder="Role"
               type="text"
@@ -106,7 +102,6 @@ const UserProfile = ({ open, setOpen, userData }) => {
                 required: "User role is required!",
               })}
               error={errors.role ? errors.role.message : ""}
-              //setValue={setValue}
             />
           </div>
           <div className="py-3 mt-4 sm:flex sm:flex-row-reverse">

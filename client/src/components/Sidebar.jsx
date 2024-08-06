@@ -4,13 +4,13 @@ import { FaUsers } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { setOpenSidebar } from "../redux/slices/authSlice";
-import clsx from "clsx";
-import logo from "../assets/Nirvasian-Logo.png";
-
 import { Toaster, toast } from "react-hot-toast";
 import { useLogoutMutation } from "../redux/slices/authApiSlice";
 import { logout } from "../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import { BsBasket } from "react-icons/bs";
+import clsx from "clsx";
+import logo from "../assets/Nirvasian-Logo.png";
 
 
 const linkData = [
@@ -28,6 +28,11 @@ const linkData = [
     label: "Orders",
     link: "orders",
     icon: <MdAccessAlarms />,
+  },
+  {
+    label: "Products",
+    link: "products",
+    icon: <BsBasket/>,
   },
 ];
 
@@ -52,7 +57,7 @@ const Sidebar = () => {
       dispatch(logout());
       navigate("/login");
       toast.success("Logged out successfully");
-      
+
     } catch (err) {
       console.error("Error during logout:", err);
       toast.error(err?.data?.message || err.error);
@@ -93,7 +98,7 @@ const Sidebar = () => {
               <NavLink el={link} key={link.label} />
             ))}
             <button
-              className="w-full flex gap-2 p-2 items-center text-lg text-gray-800"
+              className="w-full flex gap-2 p-2 items-center text-gray-800"
               onClick={logoutHandler}
             >
               <MdLogout />

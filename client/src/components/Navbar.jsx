@@ -10,7 +10,7 @@ const Navbar = () => {
   
   return (
     <>
-      <div className="flex justify-between items-center px-4 py-3 2xl:py-4 sticky z-10 top-0">
+      <div className="flex justify-between items-center px-4 py-3 2xl:py-4 sticky z-10 top-0 bg-[#f3f4f6] ">
         <div className="flex gap-4">
           <button
             onClick={() => dispatch(setOpenSidebar(true))}
@@ -18,7 +18,7 @@ const Navbar = () => {
           >
             ☰
           </button>
-          <div className="w-64 2xl:w-[400px] flex items-center py-2 px-3 gap-2 rounded-full bg-[#f3f4f6] bg-white">
+          <div className="w-64 2xl:w-[400px] flex items-center py-2 px-3 gap-2 rounded-full bg-white">
             <MdOutlineSearch className="text-gray-500 text-xl" />
             <input
               type="text"
