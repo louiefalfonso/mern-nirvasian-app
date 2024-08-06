@@ -23,7 +23,11 @@ connectDB();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: 
+      ["http://localhost:3000",
+      "http://localhost:3001",
+      "https://nirvasianapp.netlify.app/",
+      "https://mern-nirvasian-app.onrender.com"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
