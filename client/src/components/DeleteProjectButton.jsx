@@ -1,9 +1,11 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
+import Button from "../components/common/Button";
 import { DELETE_PROJECT } from "../mutations/projectMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import { useMutation } from "@apollo/client";
+import toast from 'react-hot-toast';
+
 
 const DeleteProjectButton = ({ projectId }) => {
     const navigate = useNavigate();
@@ -16,11 +18,11 @@ const DeleteProjectButton = ({ projectId }) => {
 
   return (
     <>
-      <div className="d-flex mt-5 ms-auto">
-        <button className="btn btn-danger m-2" onClick={deleteProject}>
-          <FaTrash className="icon" /> Delete Project
-        </button>
-      </div>
+      <Button
+        label="Delete"
+        onClick={deleteProject}
+        className="flex flex-row-reverse gap-1 items-center bg-red-500 text-white rounded-md 2xl:py-2.5"
+      />
     </>
   );
 }

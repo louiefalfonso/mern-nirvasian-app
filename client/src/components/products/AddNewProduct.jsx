@@ -194,7 +194,7 @@ const AddNewProduct = ({ open, setOpen }) => {
                       <option value="PERISHABLE">Perishable Goods</option>
                       <option value="HAZARDOUS">Hazardous Materials</option>
                       <option value="HIGHVALUE">High-Value Goods</option>
-                      <option value="OTHERS">OTHERS</option>
+                      <option value="OTHERS">Others</option>
                     </select>
                   </div>
                 </div>

@@ -4,13 +4,13 @@ import { GET_PRODUCT } from '../../queries/productQueries'
 import { useNavigate } from "react-router-dom";
 import { TbListDetails } from "react-icons/tb";
 
-
 const ProductRow = ({product}) => {
 
     const { loading, error, data } = useQuery(GET_PRODUCT, {
         variables: { id: product.id },
         skip: true,
     });
+    
     const navigate = useNavigate();
     const viewOrder = () => {
       navigate(`/products/${product.id}`);
