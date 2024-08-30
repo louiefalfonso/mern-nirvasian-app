@@ -1,4 +1,4 @@
-# Nirvasian MERN Stack Inventory System
+# Nirvasian Inventory App using MERN Stack & GraphQL
 
 **A cloud-based inventory management solution built with modern web technologies.**
 
