@@ -17,3 +17,8 @@ This project is a full-stack inventory system designed to efficiently manage and
 * **Backend:** Node.js, Express, GraphQL, MongoDB
 * **Authentication:** JWT
 * **Deployment:** Netlify, Render
+
+### Demo Login:
+https://nirvasianapp.netlify.app//<br/>
+email: nivasian@nirvasian.com<br/>
+password: 87TupR5SvUlNtFY8<br/>
